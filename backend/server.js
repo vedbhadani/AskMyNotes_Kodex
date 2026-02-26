@@ -3,10 +3,12 @@ const cors = require("cors");
 require("dotenv").config();
 
 const connectDB = require("./config/db");
+const authRoutes = require("./routes/auth");
 const uploadRoutes = require("./routes/upload");
 const chatRoutes = require("./routes/chat");
 const studyRoutes = require("./routes/study");
 const transcribeRoutes = require("./routes/transcribe");
+const subjectManageRoutes = require("./routes/subjects");
 const Subject = require("./models/Subject");
 const File = require("./models/File");
 
@@ -17,6 +19,8 @@ app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 
 
+app.use("/api/auth", authRoutes);
+app.use("/api/subjects", subjectManageRoutes);
 app.use("/api", uploadRoutes);
 app.use("/api", chatRoutes);
 app.use("/api", studyRoutes);
