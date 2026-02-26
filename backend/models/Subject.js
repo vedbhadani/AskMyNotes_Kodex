@@ -4,7 +4,12 @@ const subjectSchema = new mongoose.Schema({
     subjectId: {
         type: String,
         required: true,
-        unique: true,
+        index: true,
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
         index: true,
     },
     name: {
@@ -24,5 +29,7 @@ const subjectSchema = new mongoose.Schema({
         default: Date.now,
     },
 });
+
+subjectSchema.index({ subjectId: 1, userId: 1 }, { unique: true });
 
 module.exports = mongoose.model("Subject", subjectSchema);

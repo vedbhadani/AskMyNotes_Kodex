@@ -6,17 +6,15 @@ const fileSchema = new mongoose.Schema({
         required: true,
         index: true,
     },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+        index: true,
+    },
     fileName: {
         type: String,
         required: true,
-    },
-    cloudinaryUrl: {
-        type: String,
-        default: "",
-    },
-    cloudinaryPublicId: {
-        type: String,
-        default: "",
     },
     extractedText: {
         type: String,
